@@ -1,0 +1,107 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "cmake-configure",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-G", "MinGW Makefiles",
+                "-DCMAKE_MAKE_PROGRAM=mingw32-make.exe",
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DCMAKE_C_COMPILER=gcc.exe",
+                "-DCMAKE_CXX_COMPILER=g++.exe",
+                "-S", "${workspaceFolder}",
+                "-B", "${workspaceFolder}/build/release"
+            ],
+            "problemMatcher": ["$msCompile"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Generate MinGW Makefiles"
+        },
+        {
+            "label": "cmake-configure (debug)",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-G", "MinGW Makefiles",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_CXX_FLAGS=-ggdb3 -O0",
+                "-DCMAKE_C_FLAGS=-ggdb3 -O0",
+                "-S", "${workspaceFolder}",
+                "-B", "${workspaceFolder}/build/debug"
+            ],
+            "problemMatcher": ["$msCompile"],
+            "group": "build",
+            "detail": "Generate MinGW Makefiles for Debug configuration",
+        },
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build", "${workspaceFolder}/build/release",
+                "--config", "Release",
+                "--parallel"
+            ],
+            "dependsOn": ["cmake-configure"],
+            "problemMatcher": ["$msCompile"],
+            "group": "build",
+            "detail": "Build project with MinGW"
+        },
+        {
+            "label": "build (debug)",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build", "${workspaceFolder}/build/debug",
+                "--config", "Debug",
+                "--parallel"
+            ],
+            "dependsOn": ["cmake-configure (debug)"],
+            "problemMatcher": ["$msCompile"],
+            "group": "build",
+            "detail": "Build project with MinGW in Debug configuration"
+        },
+        {
+            "label": "clean-rebuild",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                {
+                    "label": "clean",
+                    "type": "shell",
+                    "command": "cmake",
+                    "args": [
+                        "--build", "${workspaceFolder}/build/release",
+                        "--target", "clean"
+                    ],
+                    "problemMatcher": []
+                },
+                "build"
+            ],
+            "group": "build",
+            "detail": "Clean, rebuild and run"
+        },
+        {
+            "label": "clean-rebuild (debug)",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                {
+                    "label": "clean",
+                    "type": "shell",
+                    "command": "cmake",
+                    "args": [
+                        "--build", "${workspaceFolder}/build/debug",
+                        "--target", "clean"
+                    ],
+                    "problemMatcher": []
+                },
+                "build (debug)"
+            ],
+            "group": "build",
+            "detail": "Clean, rebuild and run in Debug configuration"
+        }
+    ]
+}
