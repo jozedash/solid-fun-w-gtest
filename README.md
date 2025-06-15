@@ -19,4 +19,4 @@ A spare time project to experiment with some SOLID principles and testing them w
 6. Watch it launch and catch at the breakpoint.
 7. Try again with 'Run Tests (Debug).
 
-You can also build a release version by using the task 'Run (Release)'
+You can also build a release version by using the task 'build' and run it with 'Run (Release)'
