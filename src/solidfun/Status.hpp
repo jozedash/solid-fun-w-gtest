@@ -1,10 +1,12 @@
 
-#ifndef STATUS_HPP
-#define STATUS_HPP
+#ifndef SOLIDFUN_STATUS_HPP
+#define SOLIDFUN_STATUS_HPP
 
 #include <string>
 
-#include "Loggable.hpp"
+#include "solidfun/Loggable.hpp"
+
+namespace solidfun {
 
 enum StatusTypes {
     kOk = 0,
@@ -31,5 +33,7 @@ public:
 private:
     const StatusTypes status_type_;
 };
+
+} // namespace solidfun
 
 #endif

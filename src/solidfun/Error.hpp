@@ -1,12 +1,14 @@
 
-#ifndef ERROR_HPP
-#define ERROR_HPP
+#ifndef SOLIDFUN_ERROR_HPP
+#define SOLIDFUN_ERROR_HPP
 
 #include <string>
 #include <iostream>
 // #include <stacktrace>
 
-#include "Status.hpp"
+#include "solidfun/Status.hpp"
+
+namespace solidfun {
 
 class Error : public Status {
 
@@ -18,7 +20,7 @@ public:
 
     }
 
-    void Print()
+    void Print() const
     {
         std::cout << "Error: " << message_ << std::endl;
     }
@@ -27,5 +29,7 @@ private:
     const std::string message_;
     // const std::basic_stacktrace stacktrace_;
 };
+
+} // namespace solidfun
 
 #endif

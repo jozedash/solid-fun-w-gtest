@@ -1,11 +1,13 @@
 
-#ifndef WARN_HPP
-#define WARN_HPP
+#ifndef SOLIDFUN_WARN_HPP
+#define SOLIDFUN_WARN_HPP
 
 #include <string>
 #include <iostream>
 
-#include "Status.hpp"
+#include "solidfun/Status.hpp"
+
+namespace solidfun {
 
 class Warn : public Status {
 
@@ -15,7 +17,7 @@ public:
     , message_(message)
     {}
 
-    void Print()
+    void Print() const
     {
         std::cout << "Warn: " << message_ << std::endl;
     }
@@ -23,5 +25,7 @@ public:
 private:
     const std::string message_;
 };
+
+} // namespace solidfun
 
 #endif

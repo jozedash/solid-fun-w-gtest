@@ -4,6 +4,8 @@
 #include "Warn.hpp"
 #include "Error.hpp"
 
+namespace solidfun {
+
 std::shared_ptr<Status> APIImpl::GetResponse(const int value)
 {
     switch (value) {
@@ -23,3 +25,5 @@ std::shared_ptr<Status> APIImpl::GetResponse(const int value)
 
     return std::make_shared<Error>(Error("How did you get here?"));
 }
+
+} // namespace solidfun

@@ -2,6 +2,8 @@
 
 A spare time project to experiment with some SOLID principles and testing them with GTest/GMock. Ended up also being a crash course in VSCode tasks and launch configurations.
 
+Attempted to follow the [Google coding style guide](https://google.github.io/styleguide/cppguide.html), too...
+
 ## Install dependencies
 
 * Follow the official guide to setup [MinGW and GCC in VSCode](https://code.visualstudio.com/docs/cpp/config-mingw)

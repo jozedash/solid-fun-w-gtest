@@ -13,6 +13,8 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 
+include_directories(${PROJECT_SOURCE_DIR}/src)
+
 IF(NOT CMAKE_BUILD_TYPE STREQUAL "Release")
     # Add Google Test
     include(FetchContent)
@@ -28,8 +30,14 @@ IF(NOT CMAKE_BUILD_TYPE STREQUAL "Release")
     enable_testing()
 
     # Add test executable
-    add_executable(${PROJECT_NAME}_tests test/iAPITest.cpp)
+    file(GLOB_RECURSE TEST_SOURCE ${PROJECT_SOURCE_DIR}/test/*.cc)
+
+    add_executable(${PROJECT_NAME}_tests ${TEST_SOURCE})
     target_link_libraries(${PROJECT_NAME}_tests GTest::gtest_main GTest::gmock_main)
+    include_directories(
+        ${PROJECT_SOURCE_DIR}/src
+        ${PROJECT_SOURCE_DIR}/mocks
+    )
     include(GoogleTest)
     gtest_discover_tests(${PROJECT_NAME}_tests)
 
